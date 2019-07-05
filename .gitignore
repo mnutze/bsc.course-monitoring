@@ -1,0 +1,17 @@
+dashboard/resources/templates/dev.html
+dashboard/resources/dev.js
+dashboard/error.log
+
+components/communication
+components/monitor.multi_sources
+components/monitor_time_series
+components/show_points
+components/word_cloud
+components/bkp.zip
+
+components.monitor.zip
+dashboard.v1.bkp.zip
+
+resources/se1_ss19.js
+.idea
+node_modules
