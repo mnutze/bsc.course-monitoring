@@ -61,7 +61,7 @@
                 { "url": "https://mnutze.github.io/bsc.course-monitoring/libs/js/logic.js" }
             ] ],
             /** local settings store */
-            "local": [ "ccm.store", { "name": "course_monitoring" } ],
+            "local": [ "ccm.store" ],
             "utils": {
                 "components": {
                     "feedback": [ "ccm.component", "https://ccmjs.github.io/tkless-components/feedback/versions/ccm.feedback-4.0.0.js", {
