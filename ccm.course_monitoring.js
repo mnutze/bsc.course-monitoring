@@ -93,6 +93,8 @@
                 // make sure that "jquery.js" library is executed only once -> can be called with jQuery
                 !window.jQuery && await this.ccm.load( "https://code.jquery.com/jquery-3.4.0.min.js" );
 
+                let localStoreName = window.location.hostname + window.location.pathname;
+                console.log(self.utils.hash.md5(localStoreName));
                 if ( window.SharedWorker ) {
                     for (let i = 0; i < 4; i++) {
                         try {
