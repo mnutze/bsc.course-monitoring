@@ -186,7 +186,7 @@ ccm.files[ "live.js" ] = {
                                     groupBy: {key: "parent.descr,parent.id"},
                                 },
                                 limit: 20,
-                                worker: "./assets/worker.leader.js",
+                                worker: "https://mnutze.github.io/bsc.monitor/assets/worker.leader.js",
                                 render: { key: "highcharts", type: "pie", highcharts: { "tooltip.shared": false } },
                                 selection: true,
                                 subject: { key: "user.user" },
