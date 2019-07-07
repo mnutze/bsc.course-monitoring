@@ -212,7 +212,7 @@
                         self.course.humanReadable.learners[self.profile.user] : self.profile.user);
                 $.setContent(navBarProfile.querySelector(".cm-profile-team"), self.course.teams[self.profile.team].name);
                 $.setContent(navBarProfile.querySelector(".cm-profile-team-members"),
-                    $.html(Object.keys(self.course.teams[self.profile.team].members)
+                    $.html(Object.keys(self.course.teams[self.profile.team].members).filter(member => member !== self.profile.user)
                         .map(member => ({
                             "tag": "li",
                             "inner": {
