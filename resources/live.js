@@ -15,6 +15,9 @@ ccm.files[ "live.js" ] = {
         "components.monitor_time_series": [ "ccm.component", "https://mnutze.github.io/bsc.monitors/monitor_time_series/ccm.monitor_time_series.js", {
             "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", { "css": [], "realm": "hbrsinfpseudo", "logged_in": true } ],
         } ],
+        "components.monitor_subject_activities_classification": [ "ccm.component", "https://mnutze.github.io/bsc.monitors/monitor_subject_activities_classification/ccm.monitor_subject_activities_classification.js", {
+            "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", { "css": [], "realm": "hbrsinfpseudo", "logged_in": true } ],
+        } ],
         "ignore": {
             /** reusable jsonLogic-filter rules */
             "filter": {
@@ -482,10 +485,9 @@ ccm.files[ "live.js" ] = {
                 // FINAL [approved: true|false]
                 "subject_classification": {
                     "label": "Learners/Teams Activity Classification",
-                    "component": "monitor",
+                    "component": "monitor_subject_activities_classification",
                     "config": {
                         // initial configuration
-                        "worker": "https://mnutze.github.io/bsc.monitor/assets/worker.subject_classification.js",
                         "no-rlt": true,
                         "render": { "key": "highcharts", "highcharts": {"plotOptions.series.states.inactive.opacity": 1} },
                         "subject": {},
