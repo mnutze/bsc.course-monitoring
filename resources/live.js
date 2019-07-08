@@ -9,6 +9,9 @@ ccm.files[ "live.js" ] = {
         "components.monitor_latest_activities": [ "ccm.component", "https://mnutze.github.io/bsc.monitors/monitor_latest_activities/ccm.monitor_latest_activities.js", {
             "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", { "css": [], "realm": "hbrsinfpseudo", "logged_in": true } ],
         } ],
+        "components.monitor_leaderboard": [ "ccm.component", "https://mnutze.github.io/bsc.monitors/monitor_leaderboard/ccm.monitor_leaderboard.js", {
+            "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", { "css": [], "realm": "hbrsinfpseudo", "logged_in": true } ],
+        } ],
         "ignore": {
             /** reusable jsonLogic-filter rules */
             "filter": {
@@ -160,7 +163,7 @@ ccm.files[ "live.js" ] = {
                         // Activity Distribution @TODO generalize
                         {
                             "title": "Activity Distribution",
-                            "component": "monitor",
+                            "component": "monitor_leaderboard",
                             "config": {
                                 // initial configuration
                                 "groupBy": {
@@ -168,7 +171,6 @@ ccm.files[ "live.js" ] = {
                                     "groupBy": { "key": "parent.descr,parent.id" },
                                 },
                                 "limit": 20,
-                                "worker": "https://mnutze.github.io/bsc.monitor/assets/worker.leader.js",
                                 "render": { "key": "highcharts", "type": "pie", "highcharts": { "tooltip.shared": false } },
                                 "subject": {},
                                 // runtime configuration
@@ -181,7 +183,7 @@ ccm.files[ "live.js" ] = {
                         // Activity Distribution by Unit @TODO generalize
                         {
                             title: "Activity Distribution by Unit",
-                            component: "monitor",
+                            component: "monitor_leaderboard",
                             config: {
                                 // initial configuration
                                 groupBy: {
@@ -189,7 +191,6 @@ ccm.files[ "live.js" ] = {
                                     groupBy: {key: "parent.descr,parent.id"},
                                 },
                                 limit: 20,
-                                worker: "https://mnutze.github.io/bsc.monitor/assets/worker.leader.js",
                                 render: { key: "highcharts", type: "pie", highcharts: { "tooltip.shared": false } },
                                 selection: true,
                                 subject: { key: "user.user" },
@@ -333,7 +334,6 @@ ccm.files[ "live.js" ] = {
                     "component": "monitor_latest_activities",
                     "config": {
                         "runtimeOptions": true,
-                        "process": "ignore.process.latest",
                         "range": { "enabled": true, "value": 1200, "type": "number"}, // range in minutes
                         "subject": { "key": "user.user" },
                         "render": {
@@ -443,7 +443,7 @@ ccm.files[ "live.js" ] = {
                 "subject_activities_distribution_by_time_range": {
                     "label": "Learner(s)/Team(s) Activities Distribution by Time-Range",
                     "title": "Activities by Time-Range",
-                    "component": "monitor",
+                    "component": "monitor_leaderboard",
                     "config": {
                         // initial configuration
                         "groupBy": {
@@ -451,7 +451,6 @@ ccm.files[ "live.js" ] = {
                             "groupBy": { "key": "parent.descr,parent.id"},
                         },
                         "limit": 20,
-                        "worker": "https://mnutze.github.io/bsc.monitor/assets/worker.leader.js",
                         "render": { "key": "highcharts", "type": "pie", "highcharts": { "tooltip.shared": false } },
                         "subject": {},
                         // runtime configuration
@@ -608,7 +607,7 @@ ccm.files[ "live.js" ] = {
                 "leaderboard": {
                     "label": "Leaderboard",
                     "title": "%title%",
-                    "component": "monitor",
+                    "component": "monitor_leaderboard",
                     "config": {
                         // initial configuration
                         "groupBy": {
@@ -620,7 +619,6 @@ ccm.files[ "live.js" ] = {
                         "limit": 20,
                         "render": { "key": "highcharts", "highcharts": { "legend.enabled": false } },
                         "subject": {},
-                        "worker": "https://mnutze.github.io/bsc.monitor/assets/worker.leader.js",
                         // runtime configuration
                         "range": { "enabled": true, "type": null, "range": null } // @TODO add to options -> range-types "lessons"{ "enabled": true, "range": "lessons" }
                     },
