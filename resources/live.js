@@ -12,6 +12,9 @@ ccm.files[ "live.js" ] = {
         "components.monitor_leaderboard": [ "ccm.component", "https://mnutze.github.io/bsc.monitors/monitor_leaderboard/ccm.monitor_leaderboard.js", {
             "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", { "css": [], "realm": "hbrsinfpseudo", "logged_in": true } ],
         } ],
+        "components.monitor_time_series": [ "ccm.component", "https://mnutze.github.io/bsc.monitors/monitor_time_series/ccm.monitor_time_series.js", {
+            "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", { "css": [], "realm": "hbrsinfpseudo", "logged_in": true } ],
+        } ],
         "ignore": {
             /** reusable jsonLogic-filter rules */
             "filter": {
@@ -426,10 +429,9 @@ ccm.files[ "live.js" ] = {
                 "subject_activity_by_day_and_hour": {
                     "label": "Learner(s) Activity-Times",
                     "title": "Learner(s) Activity-Times by Day and Hour",
-                    "component": "monitor",
+                    "component": "monitor_time_series",
                     "config": {
                         // initial configuration
-                        "worker": "https://mnutze.github.io/bsc.monitor/assets/worker.time_series.js",
                         "render": { "key": "highcharts", "type": "hours" },
                         "subject": { "key": "user.user" },
                         // runtime configuration
@@ -464,10 +466,9 @@ ccm.files[ "live.js" ] = {
                 "subject_activity_over_time_range": {
                     "label": "Learner(s)/Team(s) Activity over Time-Range",
                     "title": "%subject%%subjectType% Activity over Time-Range",
-                    "component": "monitor",
+                    "component": "monitor_time_series",
                     "config": {
                         // initial configuration
-                        "worker": "https://mnutze.github.io/bsc.monitor/assets/worker.time_series.js",
                         "render": { "key": "highcharts", "type": "range" },
                         "subject": {},
                         // runtime configuration
