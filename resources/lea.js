@@ -1,14 +1,10 @@
 ccm.files[ "lea.js" ] = {
     "lea": {
         "key": "lea",
-        "css.default": [ "ccm.load", [ { "url": "https://mnutze.github.io/bsc.monitoring-courses/resources/default.css" } ] ],
-        "html": [ "ccm.load", { "url": "https://mnutze.github.io/bsc.monitoring-courses/resources/templates.js" } ],
+        "css.default": [ "ccm.load", [ { "url": "https://mnutze.github.io/bsc.course-monitoring/resources/default.css" } ] ],
+        "html": [ "ccm.load", { "url": "https://mnutze.github.io/bsc.course-monitoring/resources/templates.js" } ],
         "components.monitor": [ "ccm.component", "https://mnutze.github.io/bsc.monitor/ccm.monitor.js", {
-            "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", {
-                "css": [],
-                "realm": "hbrsinfpseudo",
-                "logged_in": true
-            } ],
+            "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", { "css": [], "realm": "hbrsinfpseudo", "logged_in": true } ],
         } ],
         "ignore": {
             /** reusable jsonLogic-filter rules */
@@ -72,6 +68,12 @@ ccm.files[ "lea.js" ] = {
                         ] }
                     ]
                 },
+                "reduceLogWhitelist": {
+                    "or": [
+                        { "===" : [ { "var" : "parent.name" }, "kanban_board" ] },
+                        { "===" : [ { "var" : "parent.name" }, "kanban_card" ] }
+                    ]
+                },
                 "communication_by_comment": { "and": [ { "has": [ "user" ] }, { "===" : [ { "var" : "parent.name" }, "comment" ] } ] },
                 "exercise_submits": { "and": [ { "===" : [ { "var" : "event" }, "submit" ] }, { "===" : [ { "var" : "parent.name" }, "submit" ] } ] },
                 "online_without_login": {
@@ -82,43 +84,31 @@ ccm.files[ "lea.js" ] = {
                         { "!==" : [ { "var" : "event" }, "login" ] }
                     ]
                 },
-                "reduceLogWhitelist": {
-                    "or": [
-                        { "===" : [ { "var" : "parent.name" }, "kanban_board" ] },
-                        { "===" : [ { "var" : "parent.name" }, "kanban_card" ] }
-                    ]
-                },
             },
-            groupBy: {
-                subject: {
-                    key: "user.user",
-                    label: "Learner",
-                    groupBy: {
-                        object: { key: "parent.name", label: "Component" },
-                        verb: { key: "event", label: "Action" }
+            "groupBy": {
+                "subject": {
+                    "key": "user.user",
+                    "label": "Learner",
+                    "groupBy": {
+                        "context": { "key": "parent.descr,parent.id", "label": "Context" },
+                        "resource": { "key": "parent.name", "label": "Resource" },
+                        "verb": { "key": "event", "label": "Action" }
                     }
                 },
-                object: {
-                    key: "parent.name",
-                    label: "Component",
-                    groupBy: {
-                        subject: { key: "user.user", label: "Learner" },
-                        verb: { key: "event", label: "Action" }
-                    }
-                },
-                resource: {
-                    key: "parent.name", // + "parent.descr,parent.id"
-                    label: "Resource",
-                    groupBy: {
-                        subject: { key: "user.user", label: "Learner" },
-                        verb: { key: "event", label: "Action" }
+                "resource": {
+                    "key": "parent.name", // + "parent.descr,parent.id"
+                    "label": "Resource",
+                    "groupBy": {
+                        "context": { "key": "parent.descr,parent.id", "label": "Context" },
+                        "subject": { "key": "user.user", "label": "Learner" },
+                        "verb": { "key": "event", "label": "Action" }
                     }
                 },
                 "verb": {
                     "key": "event",
                     "label": "Activity",
                     "groupBy": {
-                        "object": { "key": "parent.name", "label": "Component" },
+                        "context": { "key": "parent.descr,parent.id", "label": "Context" },
                         "subject": { "key": "user.user", "label": "Learner" },
                         "resource": { "key": "parent.name", "label": "Resource" }
                     }
@@ -166,25 +156,24 @@ ccm.files[ "lea.js" ] = {
                         },
                         // Activity Distribution @TODO generalize
                         {
-                            title: "Activity Distribution",
-                            component: "monitor",
-                            config: {
+                            "title": "Activity Distribution",
+                            "component": "monitor",
+                            "config": {
                                 // initial configuration
-                                groupBy: {
-                                    key: "event",
-                                    groupBy: {key: "parent.descr,parent.id"},
+                                "groupBy": {
+                                    "key": "event",
+                                    "groupBy": { "key": "parent.descr,parent.id" },
                                 },
-                                limit: 20,
-                                worker: "https://mnutze.github.io/bsc.monitor/assets/worker.leader.js",
-                                render: { key: "highcharts", type: "pie", highcharts: { "tooltip.shared": false } },
-                                subject: {},
+                                "limit": 20,
+                                "worker": "https://mnutze.github.io/bsc.monitor/assets/worker.leader.js",
+                                "render": { "key": "highcharts", "type": "pie", "highcharts": { "tooltip.shared": false } },
+                                "subject": {},
                                 // runtime configuration
-                                range: { enabled: true, range: null },
+                                "range": { "enabled": true, "range": null },
                             },
-                            position: { x: 6, y: 0, width: 2, height: 4 },
-                            scroll: { y: false },
-                            sources: { log: { filter: "ignore.filter.activities" } },
-
+                            "position": { "x": 6, "y": 0, "width": 2, "height": 4 },
+                            "scroll": { "y": false },
+                            "sources": { "log": { "filter": "ignore.filter.activities" } },
                         },
                         // Activity Distribution by Unit @TODO generalize
                         {
@@ -633,7 +622,7 @@ ccm.files[ "lea.js" ] = {
                         "range": { "enabled": true, "type": null, "range": null } // @TODO add to options -> range-types "lessons"{ "enabled": true, "range": "lessons" }
                     },
                     "options": {
-                        "type": {
+                        "visualization": {
                             "label": "Visualization",
                             "options": {
                                 "Bar-Chart": "highcharts.bar",
@@ -777,7 +766,7 @@ ccm.files[ "lea.js" ] = {
                             "widgets": {
                                 "widget_1560787652940X9322221351234567": {
                                     "title": "Learners Activity over Time-Range",
-                                    "position": { "x": 0, "y": 0, "width": 5, "height": 4 },
+                                    "position": { "x": 0, "y": 0, "width": 4, "height": 4 },
                                     "widget": "ignore.widgets.subject_activity_over_time_range",
                                     "config.interval": { "enabled": true, "current": "6h", "exclude": [] }, // @TODO remove exclude from ccm.monitor
                                     "config.selection": true,
@@ -785,30 +774,30 @@ ccm.files[ "lea.js" ] = {
                                 },
                                 "widget_1560787652940X9322221357654321": {
                                     "title": "Your Exam Admission",
-                                    "position": { "x": 5, "y": 0, "width": 4, "height": 4 },
+                                    "position": { "x": 8, "y": 0, "width": 2, "height": 4 },
                                     "widget": "ignore.widgets.learner_exam_admission",
                                 },
                                 "widget_1560787652940X932222135ABCDEFG": {
                                     "title": "All Your Activities",
-                                    "position": { "x": 5, "y": 4, "width": 4, "height": 4 },
+                                    "position": { "x": 4, "y": 0, "width": 2, "height": 4 },
                                     "widget": "ignore.widgets.subject_total_activities",
                                     "config.selection": true,
                                     "config.subject.key": "user.user"
                                 },
                                 "widget_ABCDE984940X6952443992161907": {
                                     "title": "Course Statistics",
-                                    "position": { "x": 9, "y": 0, "width": 3, "height": 4 },
+                                    "position": { "x": 10, "y": 0, "width": 2, "height": 4 },
                                     "widget": "ignore.widgets.course_statistics"
                                 },
                                 "widget_18867652940X6952445580399216": {
                                     "title": "Learners Activity Classification",
-                                    "position": { "x": 0, "y": 4, "width": 5, "height": 4 },
+                                    "position": { "x": 0, "y": 4, "width": 4, "height": 4 },
                                     "widget": "ignore.widgets.subject_classification",
                                     "config.subject": { "key": "user.user", "values": [] }
                                 },
                                 "widget_198614237563X913236787272112": {
                                     "title": "Your Activity Distribution",
-                                    "position": { "x": 9, "y": 4, "width": 3, "height": 4 },
+                                    "position": { "x": 6, "y": 0, "width": 2, "height": 4 },
                                     "widget": "ignore.widgets.leaderboard",
                                     "config.groupBy": { "key": "event", "groupBy": { "key": "parent.descr,parent.id"} },
                                     "config.selection": true,
@@ -829,22 +818,22 @@ ccm.files[ "lea.js" ] = {
                                 */
                                 "widget_lessons_completion_999X151677": {
                                     "title": "Learners Unit Completion-Ratio",
-                                    "position": { "x": 0, "y": 12, "width": 7, "height": 4 },
+                                    "position": { "x": 4, "y": 4, "width": 4, "height": 4 },
                                     "widget": "ignore.widgets.lesson_completion"
                                 },
                                 "widget_latest_198633X30564639958612": {
                                     "title": "Latest Learner Activities",
-                                    "position": { "x": 0, "y": 8, "width": 7, "height": 4 },
+                                    "position": { "x": 0, "y": 8, "width": 5, "height": 3 },
                                     "widget": "ignore.widgets.latest_subject_activities"
                                 },
                                 "widget_accumulated_team_AB1827X1986": {
                                     "title": "Team Activity Distribution",
-                                    "position": { "x": 7, "y": 12, "width": 5, "height": 4 },
+                                    "position": { "x": 5, "y": 8, "width": 3, "height": 3 },
                                     "widget": "ignore.widgets.team_accumulated_activities"
                                 },
                                 "widget_47LL1912340ABC52443992161907": {
                                     "title": "Your Communication Network",
-                                    "position": { "x": 7, "y": 8, "width": 5, "height": 4 },
+                                    "position": { "x": 8, "y": 4, "width": 4, "height": 7 },
                                     "widget": "ignore.widgets.subject_communication",
                                     "config.selection": true
                                 },
@@ -912,7 +901,8 @@ ccm.files[ "lea.js" ] = {
                 "filter": {},
             },
         },
-        "worker.filter": "https://mnutze.github.io/bsc.monitoring-courses/resources/worker.filter.js",
-        "worker.sharedFilter": "https://mnutze.github.io/bsc.monitoring-courses/resources/sharedWorker.filter.js"
+        "worker.filter": "https://mnutze.github.io/bsc.course-monitoring/resources/worker.filter.js",
+        "worker.sharedFilter": "https://mnutze.github.io/bsc.course-monitoring/resources/sharedWorker.filter.js"
+
     }
 };

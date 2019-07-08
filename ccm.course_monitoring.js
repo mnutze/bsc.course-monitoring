@@ -113,6 +113,7 @@
                             worker[i].port.start();
                             worker[i].port.addEventListener('message', function(e) {
                                 if (self.widgets[e.data.widget])
+                                    // notify/send valid data(type = Array)
                                     self.widgets[e.data.widget].instance.update(e.data.data, e.data.key, true);
                             }, false);
                         } catch (e) {
@@ -121,6 +122,7 @@
                             worker[i].port.start();
                             worker[i].port.addEventListener('message', function(e) {
                                 if (self.widgets[e.data.widget])
+                                    // notify/send valid data(type = Array)
                                     self.widgets[e.data.widget].instance.update(e.data.data, e.data.key, true);
                             }, false);
                         }
@@ -141,6 +143,7 @@
 
                             worker[i].addEventListener('message', function(e) {
                                 if (self.widgets[e.data.widget])
+                                    // notify/send valid data(type = Array)
                                     self.widgets[e.data.widget].instance.update(e.data.data, e.data.key, true);
                             }, false);
                         } catch (e) {
@@ -148,6 +151,7 @@
                             worker.push(new Worker(workerUrl));
                             worker[i].addEventListener('message', function(e) {
                                 if (self.widgets[e.data.widget])
+                                    // notify/send valid data(type = Array)
                                     self.widgets[e.data.widget].instance.update(e.data.data, e.data.key, true);
                             }, false);
                         }
@@ -918,21 +922,11 @@ console.log(widgetTypeConfig)
                                             widget: config.widget
                                         });
                                 } catch (e) {
-                                    // browser is not SharedWorker compatible
+                                    // browser is not SharedWorker compatible -> notify/send valid data(type = Array)
                                     preFilterData().then(data => self.widgets[config.widget].instance.update(data, self.data[src].key, true));
                                 }
                             });
                         }
-
-                        /* @TODO deprecated ... remove
-                        // pipe initial data to monitor component
-                        if (instance && instance.update && config.sources) {
-                            let __sources = Object.keys(config.sources);
-                            __sources.forEach(src => {
-                                instance.update(self.data[src], config.sources[src].key)
-                            });
-                        }
-                        */
 
                         return config
                     },
@@ -1262,11 +1256,8 @@ console.log(widgetTypeConfig)
                                 // update local story copy
                                 await self.sources[key].local.set(dataset);
                                 if (self.sources[key].listener)
-                                    // if any monitor/widget is registered to source -> notify/send this valid dataset
-                                    self.sources[key].listener.forEach(listener => {
-                                        userInfo.processed++;
-                                        listener.update(dataset, hash);
-                                    });
+                                    // if any monitor/widget is registered to source -> notify/send this valid dataset wrapped by an Array
+                                    self.sources[key].listener.forEach(listener => listener.update([dataset], hash) );
                             }
                         }
                     }
