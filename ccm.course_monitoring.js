@@ -931,7 +931,9 @@ console.log(widgetTypeConfig)
                         return config
                     },
                     remove: async (obj, key) => {
-                        obj._grid.removeWidget(obj.el)
+                        obj._grid.removeWidget(obj.el);
+                        if (self.widgets[obj.id] && self.widgets[obj.id].instance && self.widgets[obj.id].instance.worker)
+                            await self.widgets[obj.id].instance.terminateWorker();
                         delete self.widgets[obj.id];
                         Object.values(self.sources).forEach(src => {
                             src.listener = src.listener.filter(d => d.id !== "widget_" + obj.id);
