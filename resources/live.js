@@ -160,7 +160,7 @@ ccm.files[ "live.js" ] = {
                             "position": { "x": 0, "y": 8, "width": 6, "height": 4 },
                             "widget": "ignore.widgets.latest_subject_activities"
                         },
-                        // 'Learner XY' - Team Activity Distribution @TODO generalize
+                        // 'Learner' - Team Activity Distribution @TODO generalize
                         {
                             "title": "Team Activity Distribution",
                             "position": { "x": 6, "y": 8, "width": 6, "height": 4 },
