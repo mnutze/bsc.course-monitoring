@@ -6,6 +6,9 @@ ccm.files[ "live.js" ] = {
         "components.monitor": [ "ccm.component", "https://mnutze.github.io/bsc.monitor/ccm.monitor.js", {
             "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", { "css": [], "realm": "hbrsinfpseudo", "logged_in": true } ],
         } ],
+        "components.monitor_latest_activities": [ "ccm.component", "https://mnutze.github.io/bsc.monitors/monitor_latest_activities/ccm.monitor_latest_activities.js", {
+            "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", { "css": [], "realm": "hbrsinfpseudo", "logged_in": true } ],
+        } ],
         "ignore": {
             /** reusable jsonLogic-filter rules */
             "filter": {
@@ -327,7 +330,7 @@ ccm.files[ "live.js" ] = {
                 "latest_subject_activities": {
                     "label": "Latest Learners/Learner/Teams Activities",
                     "title": "Latest %subjectType%Activities",
-                    "component": "monitor",
+                    "component": "monitor_latest_activities",
                     "config": {
                         "runtimeOptions": true,
                         "process": "ignore.process.latest",

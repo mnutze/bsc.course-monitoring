@@ -857,9 +857,9 @@ console.log(widgetTypeConfig)
                         }
 
                         // if there is already an profile available, you'll get information this specific learner
-                        if (settings.component === "monitor" && !config.profile)
+                        //if (settings.component === "monitor" && !config.profile)
                         // set your profile to personally identify in monitors -> must be else
-                            config.profile = self.profile;
+                        config.profile = self.profile;
 
                         if (config.teams)
                             config.teams = self.course.teams;
