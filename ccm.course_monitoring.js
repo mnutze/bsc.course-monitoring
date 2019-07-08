@@ -357,10 +357,10 @@
                             srcPanel = self.panels.obj[src];
 
                         if (srcPanel) {
-                            srcPanel.gridstack.grid.nodes.forEach(node => {
+                            srcPanel.gridstack.grid.nodes.forEach(async node => {
                                 node._grid.removeWidget(node.el);
                                 if (self.widgets[node.id] && self.widgets[node.id].instance && self.widgets[node.id].instance.worker)
-                                    self.widgets[node.id].instance.terminateWorker();
+                                    await self.widgets[node.id].instance.terminateWorker();
                                 delete self.widgets[node.id];
                                 Object.values(self.sources).forEach(src => {
                                     src.listener = src.listener.filter(d => d.id !== "widget_" + node.id);
