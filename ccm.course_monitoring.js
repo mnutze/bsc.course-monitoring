@@ -1256,8 +1256,8 @@ console.log(widgetTypeConfig)
                                 // update local story copy
                                 await self.sources[key].local.set(dataset);
                                 if (self.sources[key].listener)
-                                    // if any monitor/widget is registered to source -> notify/send this valid dataset wrapped by an Array
-                                    self.sources[key].listener.forEach(listener => listener.update([dataset], hash) );
+                                    // if any monitor/widget is registered to source -> notify/send this valid dataset
+                                    self.sources[key].listener.forEach(listener => listener.update(dataset, hash) );
                             }
                         }
                     }
