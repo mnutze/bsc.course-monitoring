@@ -267,7 +267,7 @@
                             self.size.height -
                             self.element.querySelector("div#top-nav.row").getBoundingClientRect().height -
                             self.element.querySelector("ul#ilTab.control.panel-nav.panel-tab-nav").getBoundingClientRect().height -
-                            50
+                            100
                         ) / 12;
                         // instancing panel-grid
                         jQuery(self.element.querySelector("#grid-" + key)).gridstack({
