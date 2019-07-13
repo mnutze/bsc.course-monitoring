@@ -261,9 +261,16 @@
 
                         let element = $.html(self.html.panel.wrapper, {id: "grid-" + key});
                         self.element.querySelector("#dashboard-panels").appendChild(element);
-console.log(self.size.height - self.element.querySelector("div#top-nav.row").getBoundingClientRect().height - self.element.querySelector("ul#ilTab.control.panel-nav.panel-tab-nav").getBoundingClientRect().height)
+
+                        // define grid cell height
+                        let cellHeight = (
+                            self.size.height -
+                            self.element.querySelector("div#top-nav.row").getBoundingClientRect().height -
+                            self.element.querySelector("ul#ilTab.control.panel-nav.panel-tab-nav").getBoundingClientRect().height
+                        ) / 12;
                         // instancing panel-grid
                         jQuery(self.element.querySelector("#grid-" + key)).gridstack({
+                            cellHeight: cellHeight + "px",
                             float: false,
                             draggable: { handle: ".ilBlockDraggableHeader", cancel: "h3.ilBlockHeader" },
                         }).on('gsresizestop', function (ev, element) {
