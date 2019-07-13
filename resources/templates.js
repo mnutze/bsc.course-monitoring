@@ -6,7 +6,7 @@ ccm.files["templates.js"] = {
         { "class": "device-lg visible-lg" },
         { "id": "feedback" },
         { "tag": "body", "class": "container-fluid", "inner": [
-            { "class": "row", "inner": [
+            { "class": "row", "id": "top-nav", "inner": [
                 { "tag": "nav", "id": "ilTopNav", "class": "navbar navbar-default cm-navbar navbar-expand-lg navbar-light bg-light", "inner": [
                     { "tag": "a", "class": "navbar-brand cm-navbar-brand", "inner": [
                         { "tag": "span", "class": "badge cm-logo", "inner": '<span class="glyphicon glyphicon-blackboard"></span>'},
