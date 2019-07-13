@@ -261,7 +261,7 @@
 
                         let element = $.html(self.html.panel.wrapper, {id: "grid-" + key});
                         self.element.querySelector("#dashboard-panels").appendChild(element);
-console.log(self.size, self.element.querySelector("div#top-nav.row").getBoundingClientRect())
+console.log(self.size.height - self.element.querySelector("div#top-nav.row").getBoundingClientRect().height - self.element.querySelector("ul#ilTab.control.panel-nav.panel-tab-nav").getBoundingClientRect().height)
                         // instancing panel-grid
                         jQuery(self.element.querySelector("#grid-" + key)).gridstack({
                             float: false,
