@@ -221,7 +221,10 @@
                             "tag": "li",
                             "inner": {
                                 "tag": "a",
-                                "onclick": () => self.createBoardPanel(member, { "key": "user.user", "values": []}, false),
+                                "onclick": () => {
+                                    navBarProfile.querySelector(".cm-profile-team-members").classList.toggle("show");
+                                    self.createBoardPanel(member, { "key": "user.user", "values": []}, false);
+                                },
                                 "inner": self.course.humanReadable.learners[member] ?
                                     self.course.humanReadable.learners[member] : member
                             }
