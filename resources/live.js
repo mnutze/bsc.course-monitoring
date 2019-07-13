@@ -18,6 +18,9 @@ ccm.files[ "live.js" ] = {
         "components.monitor_subject_activities_classification": [ "ccm.component", "https://mnutze.github.io/bsc.monitors/monitor_subject_activities_classification/ccm.monitor_subject_activities_classification.js", {
             "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", { "css": [], "realm": "hbrsinfpseudo", "logged_in": true } ],
         } ],
+        "components.monitor_unit_activities": [ "ccm.component", "https://mnutze.github.io/bsc.monitors/monitor_unit_activities/ccm.monitor_unit_activities.js", {
+            "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-9.0.1.js", { "css": [], "realm": "hbrsinfpseudo", "logged_in": true } ],
+        } ],
         "ignore": {
             /** reusable jsonLogic-filter rules */
             "filter": {
@@ -577,13 +580,12 @@ ccm.files[ "live.js" ] = {
                     "scroll": { "y": false },
                     "sources": { "log": { "filter": { "and": [ { "has": [ "user" ] } ] } } }
                 },
-                // FINAL [approved: true|false] @TODO (unit_activity) interval selection isn't running...bug...fix before live
-                "unit_activity": {
+                // FINAL [approved: true|false]
+                "unit_activities": {
                     "label": "Learners Unit Activity",
                     "title": "Learners Unit Activity",
-                    "component": "monitor",
+                    "component": "monitor_unit_activities",
                     "config": {
-                        "worker": "https://mnutze.github.io/bsc.monitor/assets/worker.lesson_activity.js",
                         "render": { "key": "highcharts" },
                         "incompleteLog": true,
                         // runtime configuration
@@ -684,7 +686,7 @@ ccm.files[ "live.js" ] = {
                                 "widget_lesson_activity_19656X151677": {
                                     "title": "Learners Unit Activity",
                                     "position": { "x": 7, "y": 4, "width": 5, "height": 3 },
-                                    "widget": "ignore.widgets.unit_activity",
+                                    "widget": "ignore.widgets.unit_activities",
                                     "config.interval": { "enabled": true, "current": "12h", "exclude": [] }, // @TODO remove exclude from ccm.monitor
                                     "config.subject": { "key": "user.user", "values": [] }
                                 },
