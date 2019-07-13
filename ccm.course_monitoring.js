@@ -271,7 +271,7 @@
                         ) / 12;
                         // instancing panel-grid
                         jQuery(self.element.querySelector("#grid-" + key)).gridstack({
-                            verticalMargin: 0,
+                            verticalMargin: 15,
                             cellHeight: cellHeight,
                             float: false,
                             draggable: { handle: ".ilBlockDraggableHeader", cancel: "h3.ilBlockHeader" },
