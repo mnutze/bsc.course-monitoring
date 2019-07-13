@@ -202,6 +202,17 @@
                     cmBoardRevert: "Reset Dashboard"
                 } ) );
 
+                // set dashboard size
+                if (!self.size) {
+                    // stand-alone monitor running -> set height to full viewport height
+                    self.element.querySelector("body").style = "height: 100vh;";
+                    self.size = self.element.querySelector("body").getBoundingClientRect();
+                } else
+                    self.element.querySelector("body").style = $.format("height: %height%px; width: %width%px", {
+                        height: self.size.height,
+                        width: self.size.width
+                    });
+
                 // init revert Dashboard button
                 self.element.querySelector("#revert-dashboard").addEventListener("click", revertDashboard);
 
