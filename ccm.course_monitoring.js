@@ -271,7 +271,7 @@
                         ) / 12;
                         // instancing panel-grid
                         jQuery(self.element.querySelector("#grid-" + key)).gridstack({
-                            cellHeight: cellHeight + "px",
+                            cellHeight: cellHeight,
                             float: false,
                             draggable: { handle: ".ilBlockDraggableHeader", cancel: "h3.ilBlockHeader" },
                         }).on('gsresizestop', function (ev, element) {
