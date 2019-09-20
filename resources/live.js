@@ -907,6 +907,7 @@ ccm.files[ "live.js" ] = {
                 "filter": {},
             },
         },
+        "utils.hash": [ "ccm.load", { "url": "https://ccmjs.github.io/akless-components/modules/md5.mjs", "type": "module" } ],
         "worker.filter": "https://mnutze.github.io/bsc.course-monitoring/resources/worker.filter.js",
         "worker.sharedFilter": "https://mnutze.github.io/bsc.course-monitoring/resources/sharedWorker.filter.js"
 
