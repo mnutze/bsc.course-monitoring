@@ -906,8 +906,8 @@ ccm.files[ "configs.js" ] = {
                 "filter": {},
             },
         },
+        "utils.hash": [ "ccm.load", { "url": "https://ccmjs.github.io/akless-components/modules/md5.mjs", "type": "module" } ],
         "worker.filter": "https://mnutze.github.io/bsc.monitoring-courses/resources/worker.filter.js",
         "worker.sharedFilter": "https://mnutze.github.io/bsc.monitoring-courses/resources/sharedWorker.filter.js"
-
     }
 };
